@@ -1,0 +1,190 @@
+/* =========================================================
+   はこつき / Hakomoon — landing page
+   Light theme. Colours pulled from the logo gradient so the
+   whole thing sits in one teal→blue world.
+   All theme values are CSS variables → easy to retune / add dark mode later.
+   ========================================================= */
+
+:root {
+  /* Surfaces */
+  --bg:        #ffffff;
+  --bg-2:      #f4f6fa;
+
+  /* Text */
+  --text:      #16203a;   /* deep navy */
+  --muted:     #5b6b85;   /* grey-blue */
+
+  /* Brand accents (from the logo) */
+  --teal-deep: #377c67;
+  --teal:      #2e8b72;
+  --sage:      #76b2a1;
+  --blue:      #4a90d9;
+  --blue-soft: #a9d4f2;
+
+  /* UI */
+  --border:    #e4e9f2;
+  --card:      #ffffff;
+  --shadow:    0 1px 2px rgba(22, 32, 58, .04), 0 8px 24px rgba(22, 32, 58, .06);
+  --shadow-hi: 0 6px 16px rgba(46, 139, 114, .18), 0 14px 34px rgba(74, 144, 217, .18);
+
+  --grad:      linear-gradient(135deg, var(--teal-deep) 0%, var(--sage) 45%, var(--blue) 100%);
+
+  --radius:    999px;
+  --maxw:      640px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  font-family: "Zen Kaku Gothic New", "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(1100px 620px at 50% 22%, rgba(74, 144, 217, .07), transparent 60%),
+    radial-gradient(900px 520px at 50% 24%, rgba(46, 139, 114, .06), transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Stage (centred content) ---------- */
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.1rem, 3.2vw, 1.9rem);
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
+  text-align: center;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  width: min(86vw, 460px);
+  height: auto;
+  filter: drop-shadow(0 18px 40px rgba(46, 118, 130, .16));
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ---------- Wordmark ---------- */
+.wordmark {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(1.45rem, 5.2vw, 2.35rem);
+  line-height: 1.2;
+  letter-spacing: .06em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5em;
+  max-width: 100%;
+}
+.wm-ja  { font-family: "Zen Kaku Gothic New", sans-serif; letter-spacing: .14em; }
+.wm-sep { color: var(--sage); font-weight: 300; font-family: "Jost", sans-serif; }
+.wm-en  {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  letter-spacing: .18em;
+  font-size: .92em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Links ---------- */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .7rem .75rem;
+  margin-top: .4rem;
+  width: 100%;
+}
+
+.link {
+  --fg: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  padding: .62rem 1.05rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  color: var(--fg);
+  text-decoration: none;
+  font-family: "Jost", "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+  font-size: .95rem;
+  letter-spacing: .02em;
+  line-height: 1;
+  transition:
+    transform .18s ease,
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background .22s ease,
+    color .18s ease;
+}
+
+.link .ico {
+  width: 1.15em;
+  height: 1.15em;
+  fill: currentColor;
+  flex: none;
+  transition: transform .18s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  transform: translateY(-3px);
+  border-color: transparent;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: var(--shadow-hi);
+}
+.link:hover .ico,
+.link:focus-visible .ico { transform: scale(1.06); }
+
+.link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.link:active { transform: translateY(-1px); }
+
+/* ---------- Footer ---------- */
+.foot {
+  padding: 1.4rem 1rem 1.8rem;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Jost", sans-serif;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  opacity: .8;
+}
+
+/* ---------- Motion / accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .logo { animation: none; }
+  .link, .link .ico { transition: none; }
+}
