@@ -1,0 +1,76 @@
+{
+ "schema": 1,
+ "name": "best",
+ "checkpoint": "/home/researcher/shogoss_ai/shogoss-runtime/checkpoints/best/latest.pt",
+ "file": "model.fp16.onnx",
+ "dtype": "fp16",
+ "files": {
+  "fp16": "model.fp16.onnx"
+ },
+ "has_mlh": true,
+ "pairwise_d": 16,
+ "joint_factor_d": 8,
+ "num_obs_planes": 51,
+ "outputs": [
+  "piece",
+  "stone",
+  "value",
+  "joint_pe",
+  "joint_se",
+  "joint_pass_col",
+  "joint_no_piece_row",
+  "mlh",
+  "pair_qe",
+  "pair_ke"
+ ],
+ "model_config": {
+  "num_blocks": 16,
+  "num_channels": 192,
+  "value_hidden": 256,
+  "value_conv_channels": 1,
+  "value_obs_feats": false,
+  "value_head_type": "scalar",
+  "wdl_draw_score": 0.0,
+  "use_se": false,
+  "se_reduction": 4,
+  "se_init_bias": 4.0,
+  "extra_obs_planes": 0,
+  "use_gpool_bias": false,
+  "gpool_block_indices": null,
+  "use_pairwise_policy": true,
+  "pairwise_d": 16,
+  "trunk_type": "resnet",
+  "tf_layers": 8,
+  "tf_d": 192,
+  "tf_heads": 8,
+  "use_diffusion_policy": false,
+  "dp_hidden": 64,
+  "dp_plane_emb": 8
+ },
+ "parity": {
+  "fp32": {
+   "positions": 64,
+   "piece_argmax_match": 1.0,
+   "stone_argmax_match": 1.0,
+   "value_mae": 3.134846338070929e-07,
+   "mlh_mae": 5.269050598144531e-05,
+   "piece_logit_mae": 1.8974752435951814e-07
+  },
+  "fp16": {
+   "positions": 64,
+   "piece_argmax_match": 1.0,
+   "stone_argmax_match": 1.0,
+   "value_mae": 0.00019317842088639736,
+   "mlh_mae": 0.062439799308776855,
+   "piece_logit_mae": 0.00012466685438994318
+  }
+ },
+ "parity_gate_passed": true,
+ "initial_reference": {
+  "value": 0.018825408071279526,
+  "piece_argmax": 4614,
+  "stone_argmax": 81,
+  "mlh": 319.88671875
+ },
+ "exported_at": "2026-10-14T08:53:21Z"
+}
